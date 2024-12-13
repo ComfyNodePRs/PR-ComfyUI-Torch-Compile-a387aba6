@@ -3,8 +3,8 @@ import torch
 # Based on https://github.com/kijai/ComfyUI-KJNodes/blob/8c590fd5a023ee14b5617347567752bf62ea4cd6/nodes/model_optimization_nodes.py#L321
 
 
-class TorchCompileVAE:
-    CATEGORY = "torch-compile-utils"
+class TorchCompileLoadVAE:
+    CATEGORY = "torch-compile"
     RETURN_TYPES = ("VAE",)
     FUNCTION = "compile"
 
@@ -52,35 +52,29 @@ class TorchCompileVAE:
             if hasattr(vae.first_stage_model, "taesd_encoder"):
                 encoder_name = "taesd_encoder"
 
-            try:
-                setattr(
-                    vae.first_stage_model,
-                    encoder_name,
-                    torch.compile(
-                        getattr(vae.first_stage_model, encoder_name),
-                        mode=mode,
-                        fullgraph=fullgraph,
-                        backend=backend,
-                    ),
-                )
-            except:
-                raise RuntimeError("Failed to compile model")
+            setattr(
+                vae.first_stage_model,
+                encoder_name,
+                torch.compile(
+                    getattr(vae.first_stage_model, encoder_name),
+                    mode=mode,
+                    fullgraph=fullgraph,
+                    backend=backend,
+                ),
+            )
         if compile_decoder:
             decoder_name = "decoder"
             if hasattr(vae.first_stage_model, "taesd_decoder"):
                 decoder_name = "taesd_decoder"
 
-            try:
-                setattr(
-                    vae.first_stage_model,
-                    decoder_name,
-                    torch.compile(
-                        getattr(vae.first_stage_model, decoder_name),
-                        mode=mode,
-                        fullgraph=fullgraph,
-                        backend=backend,
-                    ),
-                )
-            except:
-                raise RuntimeError("Failed to compile model")
+            setattr(
+                vae.first_stage_model,
+                decoder_name,
+                torch.compile(
+                    getattr(vae.first_stage_model, decoder_name),
+                    mode=mode,
+                    fullgraph=fullgraph,
+                    backend=backend,
+                ),
+            )
         return (vae,)
