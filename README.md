@@ -50,7 +50,7 @@ pip install -r requirements.txt
 
 # Nodes
 
-| Node                   | Description                                                                                                    |
-| ---------------------- | -------------------------------------------------------------------------------------------------------------- |
-| TorchCompileLoadVAE    | Creates an optimized version of the VAE using torch.compile that will be JIT compiled during inference.        |
-| TorchCompileControlNet | Creates an optimized version of the ControlNet using torch.compile that will be JIT compiled during inference. |
+| Node                       | Description                                                                                                    |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| TorchCompileLoadVAE        | Creates an optimized version of the VAE using torch.compile that will be JIT compiled during inference.        |
+| TorchCompileLoadControlNet | Creates an optimized version of the ControlNet using torch.compile that will be JIT compiled during inference. |
