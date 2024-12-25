@@ -1,0 +1,15 @@
+[project]
+name = "comfyui-torch-compile"
+description = "ComfyUI nodes for running torch.compile."
+version = "1.0.0"
+license = { file = "LICENSE" }
+dependencies = ["torch"]
+
+[project.urls]
+Repository = "https://github.com/yondonfu/ComfyUI-Torch-Compile"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = "yondonfu"
+DisplayName = "ComfyUI-Torch-Compile"
+Icon = ""
